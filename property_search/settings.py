@@ -9,9 +9,8 @@ https://docs.djangoproject.com/en/5.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
-
-from pathlib import Path
 import os
+from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,14 +20,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-z7u-^3vhf%k#m2^n!h9e4g^%9p1=iyna!y!nn(%x!$*-xnisba"
+SECRET_KEY = "django-insecure-^qpo2=)51^ks%zf$rdkx_#)8z1jldp%zm(0gu9@&jktl)@2s(&"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 if os.environ.get('DJANGO_ALLOWED_HOSTS'):
     ALLOWED_HOSTS = os.environ.get('DJANGO_ALLOWED_HOSTS').split(' ')
-ALLOWED_HOSTS = []
+else:
+    ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -41,8 +41,8 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "crispy_forms",
-    'crispy_bootstrap5',
-    'markdownx',
+    "crispy_bootstrap5",
+    "markdownx",
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
@@ -57,16 +57,14 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    'allauth.account.middleware.AccountMiddleware',
+    "allauth.account.middleware.AccountMiddleware",
 ]
 
 SITE_ID = 1
 
 ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_EMAIL_VREIFICATION = 'none'
+ACCOUNT_EMAIL_VERIFICATION = 'none'
 LOGIN_URL = 'accounts/login/'
-
-ROOT_URLCONF = 'property_search.urls'
 
 ROOT_URLCONF = "property_search.urls"
 
@@ -94,8 +92,8 @@ WSGI_APPLICATION = "property_search.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": os.environ.get('POSTGRES_ENGINE',"django.db.backends.sqlite3"),
-        "NAME": os.environ.get('POSTGRES_DB_NAME', BASE_DIR / 'postgres'),
+        "ENGINE": os.environ.get('POSTGRES_ENGINE', 'django.db.backends.sqlite3'),
+        "NAME": os.environ.get('POSTGRES_DB_NAME', 'postgres'),
         "USER": os.environ.get('POSTGRES_USER', 'user'),
         "PASSWORD": os.environ.get('POSTGRES_PASSWORD', 'password'),
         "HOST": os.environ.get('POSTGRES_HOST', 'localhost'),
@@ -139,10 +137,12 @@ USE_TZ = False
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = "static/"
-STATIC_ROOT = os.path.join(BASE_DIR, "_static")
+STATIC_ROOT = os.path.join(BASE_DIR, '_static')
 
 MEDIA_URL = "media/"
-MEDIA_ROOT = os.path.join(BASE_DIR, "_media")
+MEDIA_ROOT = os.path.join(BASE_DIR, '_media')
+
+CRISPY_TEMPLATE_PACK = 'bootstrap5'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
